@@ -1,16 +1,17 @@
-# cointicker
+# CoinTicker 
 
-A new Flutter project.
+- BitCoin Coin-Ticker
 
-## Getting Started
+- - it's an crypto currency price checking app. we can monitor our bitcoin investents on the move!
+- it has different layout for both IOS and Android, using cupertino and it show all current currency price of BTC, ETH, LTC.
 
-This project is a starting point for a Flutter application.
+## Package's Used 
 
-A few resources to get you started if this is your first Flutter project:
+- [IO](https://api.flutter.dev/flutter/dart-io/dart-io-library.html)
+- [HTTP](https://pub.dev/packages/http)
+- [Cupertino](https://docs.flutter.dev/development/ui/widgets/cupertino)
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Motivation 
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[londonappbrewery](https://github.com/londonappbrewery/bmi-calculator-flutter)
+
