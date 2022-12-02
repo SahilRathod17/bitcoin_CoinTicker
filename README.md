@@ -2,7 +2,7 @@
 
 - BitCoin Coin-Ticker
 
-- - it's an crypto currency price checking app. we can monitor our bitcoin investents on the move!
+- it's an crypto currency price checking app. we can monitor our bitcoin investents on the move!
 - it has different layout for both IOS and Android, using cupertino and it show all current currency price of BTC, ETH, LTC.
 
 ## Package's Used 
