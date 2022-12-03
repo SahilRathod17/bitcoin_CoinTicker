@@ -45,6 +45,7 @@ class CoinData {
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
       double price = data['$sc'];
+
       return price.toStringAsFixed(0);
     } else {
       print(response.statusCode);
