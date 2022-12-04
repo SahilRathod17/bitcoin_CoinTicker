@@ -17,7 +17,7 @@ class _PriceScreenState extends State<PriceScreen> {
   String selectedCurrency = currenciesList.first;
   late ConnectivityResult result;
   late StreamSubscription subscription;
-  var isConnected = false;
+  bool isConnected = false;
 
   DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
@@ -60,6 +60,7 @@ class _PriceScreenState extends State<PriceScreen> {
     super.initState();
     getData();
     startStreaming();
+    CheckInternet();
     // getConnectivity();
   }
 
@@ -67,6 +68,7 @@ class _PriceScreenState extends State<PriceScreen> {
     result = await Connectivity().checkConnectivity();
     if (result != ConnectivityResult.none) {
       isConnected = true;
+      getData();
     } else {
       isConnected = false;
       showDialogBox();
@@ -140,7 +142,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 ETH = $coinValue $selectedCurrency',
+                  '1 ETH = $coinValue  $selectedCurrency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
