@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, non_constant_identifier_names, sort_child_properties_last
 import 'dart:async';
 
 import 'package:cointicker/coin_data.dart';
@@ -34,21 +34,50 @@ class _PriceScreenState extends State<PriceScreen> {
       onChanged: (value) {
         setState(() {
           selectedCurrency = value!;
-          getData();
+          getBTCData();
+          getETHData();
+          getLTCData();
         });
       },
     );
   }
 
   bool isWaiting = false;
-  String? coinValue;
+  // ignore: non_constant_identifier_names
+  String? BTCValue;
+  String? ETHValue;
+  String? LTCValue;
 
-  void getData() async {
+  void getBTCData() async {
     isWaiting = true;
     try {
-      var data = await CoinData().getData(selectedCurrency);
+      var data = await CoinData().getData(selectedCurrency, 'BTC');
       setState(() {
-        coinValue = data;
+        BTCValue = data;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void getETHData() async {
+    isWaiting = true;
+    try {
+      var data = await CoinData().getData(selectedCurrency, 'ETH');
+      setState(() {
+        ETHValue = data;
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void getLTCData() async {
+    isWaiting = true;
+    try {
+      var data = await CoinData().getData(selectedCurrency, 'LTC');
+      setState(() {
+        LTCValue = data;
       });
     } catch (e) {
       print(e);
@@ -58,7 +87,9 @@ class _PriceScreenState extends State<PriceScreen> {
   @override
   void initState() {
     super.initState();
-    getData();
+    getBTCData();
+    getETHData();
+    getLTCData();
     startStreaming();
     CheckInternet();
     // getConnectivity();
@@ -68,7 +99,9 @@ class _PriceScreenState extends State<PriceScreen> {
     result = await Connectivity().checkConnectivity();
     if (result != ConnectivityResult.none) {
       isConnected = true;
-      getData();
+      getBTCData();
+      getETHData();
+      getLTCData();
     } else {
       isConnected = false;
       showDialogBox();
@@ -121,7 +154,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 BTC = $coinValue $selectedCurrency',
+                  '1 BTC = $BTCValue $selectedCurrency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
@@ -142,7 +175,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 ETH = $coinValue  $selectedCurrency',
+                  '1 ETH = $ETHValue  $selectedCurrency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,
@@ -163,7 +196,7 @@ class _PriceScreenState extends State<PriceScreen> {
               child: Padding(
                 padding: EdgeInsets.symmetric(vertical: 15.0, horizontal: 28.0),
                 child: Text(
-                  '1 LTC = $coinValue $selectedCurrency',
+                  '1 LTC = $LTCValue $selectedCurrency',
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 20.0,

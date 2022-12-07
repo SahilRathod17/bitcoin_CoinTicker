@@ -32,21 +32,30 @@ final List<String> cryptoList = [
 ];
 
 const coinAPIURL =
-    'https://min-api.cryptocompare.com/data/price?fsym=BTC&tsyms=';
-const apiKey =
-    'e10666e2570b4925b35a8b9a2d105324a84cba332307064fe8fd20f524aeeece';
+    'https://min-api.cryptocompare.com/data/pricemulti?fsyms=BTC,ETH,LTC&tsyms=';
+const apiKey = ''; //use your own api key
 
 class CoinData {
-  Future getData(String sc) async {
+  Future getData(String sc, String coin) async {
+    // ignore: non_constant_identifier_names
     String Url = '$coinAPIURL$sc&api_key=$apiKey';
     var url = Uri.parse(Url);
 
     http.Response response = await http.get(url);
     if (response.statusCode == 200) {
       var data = jsonDecode(response.body);
-      double price = data['$sc'];
+      // ignore: unnecessary_string_interpolations
+      double BTCprice = data['BTC']['$sc'];
+      double ETHprice = data['ETH']['$sc'];
+      double LTCprice = data['LTC']['$sc'];
 
-      return price.toStringAsFixed(0);
+      if (coin == 'BTC') {
+        return BTCprice.toStringAsFixed(0);
+      } else if (coin == 'ETH') {
+        return ETHprice.toStringAsFixed(0);
+      } else if (coin == 'LTC') {
+        return LTCprice.toStringAsFixed(0);
+      }
     } else {
       print(response.statusCode);
     }
