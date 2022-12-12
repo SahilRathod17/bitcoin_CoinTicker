@@ -14,5 +14,5 @@
 
 ## Motivation 
 
-[londonappbrewery](https://github.com/londonappbrewery/bmi-calculator-flutter)
+[londonappbrewery](https://github.com/londonappbrewery/bitcoin-ticker-flutter)
 
